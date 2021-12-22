@@ -37,7 +37,11 @@ Cygwin是许多自由软件的集合，最初由Cygnus Solutions开发，用于�
 
 ## CLion 工程配置
 
-因为文中是使用 msys2 编译的
+因为文中是使用 MSVC 编译的，所以引用 ffmpeg 的工程的编译器也得是 MSVC。我们在 CLion 的 `File -> Settings -> Build, Execution, Deployment -> Toolchains`选项中将默认的工具链改成`Visual Studio`.
+创建好实例工程之后我们就可以将 ffmpeg 和 libx264 引入到工程中去了。
+
+编译好的 ffmpeg 和 x264 会生成两种不同的库文件,例如：`libx264.lib`和`libx264-164.dll`,它们分别是动态链接库和动态库。
+我们在编译阶段需要链接动态链接库(里面全是符号表的声明)来补全缺失的符号表，在运行阶段需要链接动态库(这里面才是库功能的实现)。
 
 ## CMakeList
 
