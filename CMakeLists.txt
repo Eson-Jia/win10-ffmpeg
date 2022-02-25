@@ -14,9 +14,10 @@ find_library(CODEC avcodec PATHS E:/Work/ffmpeg/bin REQUIRED NO_CACHE)
 
 find_library(FORMAT avformat PATHS E:/Work/ffmpeg REQUIRED NO_CACHE) # 注意，不需要填写最精确的路径，比如这里省略了 bin 路径完全可以找到
 find_library(UTIL avutil PATHS E:/Work/ffmpeg REQUIRED NO_CACHE)
+find_library(DEVICE avdevice PATHS E:/Work/ffmpeg REQUIRED NO_CACHE)
 
-message(WARNING "this is a debug message for test print info to terminal ${CODEC}  ${FORMAT} ${UTIL} ${X264}")
+message(WARNING "this is a debug message for test print info to terminal ${CODEC}  ${FORMAT} ${UTIL} ${X264} ${DEVICE}")
 
-add_executable(FFDemo main.cpp)
+add_executable(FFDemo main.cpp FFmpeg.cpp FFmpeg.h)
 
-target_link_libraries(FFDemo ${CODEC}  ${FORMAT} ${UTIL} ${X264})
+target_link_libraries(FFDemo ${CODEC}  ${FORMAT} ${UTIL} ${X264} ${DEVICE})
